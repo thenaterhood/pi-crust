@@ -59,6 +59,14 @@ class gpio():
         self.outpins = [8, 10, 12, 16, 18, 22, 24, 26]
             
     def Rx( self ):
+        """
+        Checks the state of an array of gpio input pins defined in
+        self.inpins and sets the class register slot to the contained
+        data.
+        
+        Arguments:
+            none
+        """
         RxData = []
         # Setting up and retrieving the state of each pin
         for pin in inpins:
@@ -72,6 +80,15 @@ class gpio():
             
         
     def Tx( self, data ):
+        """
+        Sets the array of pins defined in self.outpins to the binary
+        representation of an integer (data).  Sets the class error
+        field to True if there was an error (the integer did not fit
+        in the number of bits)
+        
+        Arguments:
+            data (int): an integer to send
+        """
         # Converts the input to an array of True and False that
         # represents the binary 1 and 0 bits of the binary number
         self.register = self.createBinArray( self.DecToBinString( data ) )
