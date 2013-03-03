@@ -37,17 +37,7 @@ class gpio():
     
     def __init__( self ):
         """
-        Constructs the class with either the input from an array of up
-        to 8 inputs (1 or 0) and returns it, or converts the argument
-        integer to binary and displays it on the GPIO LED array.
-        
-        All returned arrays of input are lists of boolean values for
-        each pin.
-        
-        Arguments:
-            task (str): read or write, whether to read from an
-            array of switches or 'write' to the output
-        
+        Constructs the class with either the input
         """
         io.setmode(io.BOARD)
         # Whether to print variables as they're created, for debug
