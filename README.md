@@ -36,10 +36,8 @@ that in mind while building hardware that you're using this with.
 
 	gpioInterface = gpio( )
 	
-	Sending/Receiving
-	
+	Sending/Receiving:
 	gpioInterface.Rx() # Retrieve the state of the array of input pins
-	
 	gpioInterface.Tx( integer ) # Send data over the array of output pins
 
 
@@ -79,13 +77,10 @@ one.)
 	gpioInterface = gpio( output pin, clock pin, output size )
 	
 	Defaults:
-	
 	gpioInterface = gpio( output pin )
 	
 	Sending/Receiving:
-	
 	gpioInterface.Rx() # Retrieve data from the array of input pins
-	
 	gpioInterface.Tx( integer ) # Send data over the output pin
 
 LICENSE
