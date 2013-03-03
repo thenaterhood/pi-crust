@@ -1,27 +1,11 @@
 """
 Author: Nate Levesque <public@thenaterhood.com>
 Language: Python3
-Filename: raspi_binary_gpio.py
+Filename: raspi_bus_gpio.py
 Description:
-    contains a class for reading/writing from the raspberry pi
-    GPIO pins as two 8-bit arrays, like in assembly.  Note that
-    this is designed (originally) for writing/reading 8-bit arrays
-    of switches or LEDs "in one shot" but if the hardware is designed
-    using shift registers, it could also be used to display data on an
-    8xN LED display.
-    
-    The class requires integers which are then converted to binary
-    in 8 bits.  If the output results in more than 8 bits, the program
-    will display up to the first 8, and set its error field to True.
-    If the output fits in the output array, then the error field is set
-    to false.  Retrieving data does not set the error field.
-    
-    The class treats (as it was easier to wire it this way in my
-    setup) the GPIO pins as one side of the connector is output and
-    the other side is input.  In the setup section this is more clear
-    as it includes pin numbers.  This can be changed by changing
-    what pins are listed in the inpins and outpins (and if it's safe in
-    your setup, they can be the same thing)
+    Manages working with the pi output pins as a bus.  Uses two pins,
+    one to provide a clock and another to transfer data.  Reads pins
+    in parallel.
 """
 import RPi.GPIO as io
 from time import sleep

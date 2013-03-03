@@ -1,7 +1,7 @@
 """
 Author: Nate Levesque <public@thenaterhood.com>
 Language: Python3
-Filename: raspi_binary_gpio.py
+Filename: raspi_parallel_gpio.py
 Description:
     contains a class for reading/writing from the raspberry pi
     GPIO pins as two 8-bit arrays, like in assembly.  Note that
