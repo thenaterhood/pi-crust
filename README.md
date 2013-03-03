@@ -3,6 +3,12 @@ Pi Crust
 A collection of wrappers to make working with the Raspberry Pi GPIO
 interface more efficient.
 
+If you are looking to import these files as a submodule in another project, 
+you will want to use the 'import' branch, which contains the __init__.py file
+so python will recognize it as importable and will lag behind a little bit 
+so that if anything major gets changed it won't immediately break your 
+projects.
+
 Contents
 ---------------
 	raspi_parallel_gpio			Works with parallel arrays of IO pins
