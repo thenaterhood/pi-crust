@@ -33,9 +33,9 @@ class gpio():
     registers.
     
     """
-    __slots__=('register', 'error')
+    __slots__=('register', 'error', 'inpins', 'outpins', 'debug')
     
-    def __init__( self, TxData=False ):
+    def __init__( self ):
         """
         Constructs the class with either the input from an array of up
         to 8 inputs (1 or 0) and returns it, or converts the argument
@@ -52,49 +52,47 @@ class gpio():
         io.setmode(io.BOARD)
         # Whether to print variables as they're created, for debug
         # purposes
-        debug = False
+        self.debug = False
         
         # Defines the input and output pins to use
-        inpins = [3, 5, 7, 11, 13, 15, 19, 21, 23]
-        outpins = [8, 10, 12, 16, 18, 22, 24, 26]
+        self.inpins = [3, 5, 7, 11, 13, 15, 19, 21, 23]
+        self.outpins = [8, 10, 12, 16, 18, 22, 24, 26]
+            
+    def Rx( self ):
+        RxData = []
+        # Setting up and retrieving the state of each pin
+        for pin in inpins:
+            io.setup(pin, io.IN)
+            RxData.append( io.input(pin) )
+            
+        self.register = RxData
+            
+        if self.debug:
+            print( self )
+            
         
-        # Retrieves the data from the incoming pins
-        if ( not TxData ):
-            RxData = []
-            # Setting up and retrieving the state of each pin
-            for pin in inpins:
-                io.setup(pin, io.IN)
-                RxData.append( io.input(pin) )
-                
-            # Initializing the class slot for the data and printing
-            # it in string form if debug is set
-            self.register = RxData
-            if debug:
-                print( self )  
+    def Tx( self, data ):
+        # Converts the input to an array of True and False that
+        # represents the binary 1 and 0 bits of the binary number
+        self.register = self.createBinArray( self.DecToBinString( data ) )
+        if self.debug:
+            print( self )
+            
+        # Iterates backwards through the binary data (LSB -> MSB)
+        # and outputs it over the designated output pins
+        i = len( self.outpins ) - 1
+        while i >= 0:
+            io.setup( self.outpins[i], io.OUT )
+            io.output( self.outpins[i], self.register[i] )
+            i -= 1
         
-        # writes the data to the output pins    
-        if ( TxData ):
-            # Converts the input to an array of True and False that
-            # represents the binary 1 and 0 bits of the binary number
-            self.register = self.createBinArray( self.DecToBinString( TxData ) )
-            if debug:
-                print( self )
-                
-            # Iterates backwards through the binary data (LSB -> MSB)
-            # and outputs it over the designated output pins
-            i = len( outpins ) - 1
-            while i >= 0:
-                io.setup( outpins[i], io.OUT )
-                io.output( outpins[i], self.register[i] )
-                i -= 1
-            
-            # Checks to see if the number fit in the number of output
-            # pins and sets the error field to True if it did not    
-            if ( len( outpins ) < len( self.register ) ):
-                self.error = True
-            
-            self.error = False
-            
+        # Checks to see if the number fit in the number of output
+        # pins and sets the error field to True if it did not    
+        if ( len( self.outpins ) < len( self.register ) ):
+            self.error = True
+        
+        self.error = False
+               
     def DecToBinString( self, integer ):
         """
         Returns a string of the binary representation
@@ -129,6 +127,13 @@ class gpio():
             binArray.insert(0, False)
                 
         return binArray
+        
+    def __del__( self ):
+        """
+        Cleans up the gpio interface when the instance of the class
+        is deleted
+        """
+        io.cleanup()
         
     def __str__( self ):
         """
