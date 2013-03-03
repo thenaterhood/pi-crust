@@ -1,11 +1,11 @@
-Elaborate Pi
+Pi Crust
 ===============
 A collection of wrappers to make working with the Raspberry Pi GPIO
 interface more efficient.
 
 Contents
 ---------------
-	raspi_binary_gpio			Works with parallel arrays of IO pins
+	raspi_parallel_gpio			Works with parallel arrays of IO pins
 	raspi_bus_gpio				Provides a bus interface via one pin
 	
 Raspi Binary GPIO
