@@ -28,11 +28,7 @@ from time import sleep
 
 class gpio():
     """
-    Manages IO for the raspberry pi GPIO as two 8-bit registers.
-    This may expand to 16 bit both ways, but for my purposes right now,
-    8 bit is fine and with my setup it's safer to use it as two separate
-    registers.
-    
+    Manages IO for the raspberry pi GPIO a register.
     """
     __slots__=('register', 'error', 'inpins', 'outpins', 'debug', 'clock', 'size')
     
@@ -88,7 +84,7 @@ class gpio():
         if self.debug:
             print( self )
             
-        # Iterates backwards through the binary data (LSB -> MSB)
+        # Iterates backwards through the binary data
         # and outputs it over the designated output pin and cycles
         # the clock once for each time it outputs.
         i = 0
@@ -145,7 +141,7 @@ class gpio():
             if ( digit == '1' ):
                 binArray.append( True )
                 
-        while len( binArray ) < 8:
+        while len( binArray ) < self.size:
             binArray.insert(0, False)
                 
         return binArray
@@ -155,6 +151,10 @@ class gpio():
         Cleans up the gpio interface when the instance of the class
         is deleted
         """
+        # Clear the output on the hardware
+        self.Tx( 0 )
+        
+        # Clean up the GPIO interface
         io.cleanup()
         
     def __str__( self ):
