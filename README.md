@@ -86,7 +86,7 @@ one.)
 LICENSE
 ------------
 
-thenaterhood/basically-ti-basic repository (c) 2012-2013 Nate Levesque (TheNaterhood), [www.thenaterhood.com](www.thenaterhood.com)
+thenaterhood/basically-ti-basic repository (c) 2012-2013 Nate Levesque (TheNaterhood), [www.thenaterhood.com](http://www.thenaterhood.com)
 
 [![Creative Commons License](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)
 
