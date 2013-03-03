@@ -34,9 +34,9 @@ class gpio():
     registers.
     
     """
-    __slots__=('register', 'error', 'inpins', 'outpins', 'debug', 'clock')
+    __slots__=('register', 'error', 'inpins', 'outpins', 'debug', 'clock', 'size')
     
-    def __init__( self, outpin, clock=23 ):
+    def __init__( self, outpin, clock=23, size=8 ):
         """
         Constructs the class with either the input
         """
@@ -47,8 +47,9 @@ class gpio():
         
         # Defines the input and output pins to use
         self.inpins = [3, 5, 7, 11, 13, 15, 19, 21, 23]
-        self.outpins = 8
-        self.clock = 23
+        self.outpins = outpin
+        self.clock = clock
+        self.size = size
             
     def Rx( self ):
         """
@@ -88,12 +89,18 @@ class gpio():
             print( self )
             
         # Iterates backwards through the binary data (LSB -> MSB)
-        # and outputs it over the designated output pins
+        # and outputs it over the designated output pin and cycles
+        # the clock once for each time it outputs.
         i = 0
-        while i < len( self.register ):
+        while i < len( self.register ) and i < self.size:
+            # Configures the pins
             io.setup( self.outpins, io.OUT )
             io.setup( self.clock, io.OUT )
+            
+            # Sends the data
             io.output( self.outpins, self.register[i] )
+            
+            # Cycles the clock
             io.output( self.clock, True )
             sleep(.00001)
             io.output( self.clock, False )
@@ -103,10 +110,10 @@ class gpio():
         
         # Checks to see if the number fit in the number of output
         # pins and sets the error field to True if it did not    
-        #if ( len( self.outpins ) < len( self.register ) ):
-            #self.error = True
+        if ( len( self.register ) > self.size ):
+            self.error = True
         
-        #self.error = False
+        self.error = False
                
     def DecToBinString( self, integer ):
         """
