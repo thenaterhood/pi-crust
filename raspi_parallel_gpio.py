@@ -22,6 +22,17 @@ Description:
     as it includes pin numbers.  This can be changed by changing
     what pins are listed in the inpins and outpins (and if it's safe in
     your setup, they can be the same thing)
+    
+    FOR COMMAND LINE USE:
+    
+    With root access, run the program in python 3 with no arguments to
+    retrieve the current state of the input array, or with an integer
+    argument to send that integer over the parallel array.
+    
+Examples:
+	sudo python3 raspi_parallel_gpio.py - will retrieve current GPIO input
+	sudo python3 raspi_parallel_gpio.py 32 - will send the number 32 over
+		the output array
 """
 import RPi.GPIO as io
 

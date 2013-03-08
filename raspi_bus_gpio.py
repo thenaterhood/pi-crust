@@ -6,6 +6,19 @@ Description:
     Manages working with the pi output pins as a bus.  Uses two pins,
     one to provide a clock and another to transfer data.  Reads pins
     in parallel.
+    
+    FOR COMMAND LINE USE:
+    
+    With root access, run the program in python 3 with no arguments to
+    retrieve the current state of the input array, or with an integer
+    argument and a pin number to send that integer over the specified
+    pin
+    
+Examples:
+	sudo python3 raspi_bus_gpio.py - will retrieve current GPIO input
+	sudo python3 raspi_bus_gpio.py 32 7 - will send the number 32 over
+		pin 7.  From the command line, the program will always use pin
+		23 for a clock signal.
 """
 import RPi.GPIO as io
 from time import sleep
