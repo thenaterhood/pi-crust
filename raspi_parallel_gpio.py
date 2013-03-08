@@ -43,6 +43,7 @@ class gpio():
         # Whether to print variables as they're created, for debug
         # purposes
         self.debug = False
+        self.register = []
         
         # Defines the input and output pins to use
         self.inpins = [3, 5, 7, 11, 13, 15, 19, 21, 23]
@@ -59,7 +60,7 @@ class gpio():
         """
         RxData = []
         # Setting up and retrieving the state of each pin
-        for pin in inpins:
+        for pin in self.inpins:
             io.setup(pin, io.IN)
             RxData.append( io.input(pin) )
             
@@ -154,3 +155,20 @@ class gpio():
             else:
                 r = r + "o"
         return r
+        
+if __name__ == "__main__":
+    import sys
+    if ( len( sys.argv ) < 2 ):
+        instance = gpio()
+        print( "Current state of parallel input pins is:" )
+        instance.Rx()
+        print( instance.register )
+    else:
+        instance = gpio()
+        try:
+            int( sys.argv[1] )
+        except:
+            raise RuntimeError
+        instance.Tx( int( sys.argv[1] ) )
+        print( "Sent data" )
+    
