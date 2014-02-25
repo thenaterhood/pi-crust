@@ -98,4 +98,4 @@ Though not required by the license terms, please consider contributing,
 providing feedback, or simply dropping a line to say that this software 
 was useful to you.
 
-thenaterhood/basically-ti-basic repository (c) 2012-2013 Nate Levesque (TheNaterhood), [www.thenaterhood.com](http://www.thenaterhood.com)
+thenaterhood/pi-crust (c) 2012-2013 Nate Levesque (TheNaterhood), [www.thenaterhood.com](http://www.thenaterhood.com)
