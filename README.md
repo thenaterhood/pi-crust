@@ -3,10 +3,6 @@ Pi Crust
 A collection of wrappers to make working with the Raspberry Pi GPIO
 interface more efficient.
 
-If you are looking to import these files as a submodule in another project,
-you will want to use.
-
-
 Raspi Parallel GPIO
 ---------------
 This class provides a parallel output on an array of pins, as well as
@@ -33,7 +29,7 @@ Usage:
 The parallel class gives each input and output its own pin, so keep
 that in mind while building hardware that you're using this with.
 
-  from pi_crust import ParallelIO
+	from pi_crust import ParallelIO
 	gpioInterface = ParallelIO( )
 
 	Sending/Receiving:
@@ -78,7 +74,7 @@ using only a few more pins to control mux output (probably best done
 in parallel, using an instance of the parallel wrapper in addition to this
 one.)
 
-  from pi_crust import BusIO
+	from pi_crust import BusIO
 	gpioInterface = BusIO( output pin, clock pin, output size )
 
 	Defaults:
