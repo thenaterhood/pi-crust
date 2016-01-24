@@ -3,6 +3,8 @@ Pi Crust
 A collection of wrappers to make working with the Raspberry Pi GPIO
 interface more efficient.
 
+To install, clone or download the repository and run `python setup.py install`.
+
 Raspi Parallel GPIO
 ---------------
 This class provides a parallel output on an array of pins, as well as
