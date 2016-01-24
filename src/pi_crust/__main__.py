@@ -8,7 +8,7 @@ def do_parallel():
         instance.Rx()
         print( instance.register )
     else:
-        instance = gpio()
+        instance = ParallelIO()
         try:
             int( sys.argv[1] )
         except:
@@ -28,7 +28,7 @@ def do_bus():
             int( sys.argv[2] )
         except:
             raise RuntimeError
-        instance = gpio( int( sys.argv[2] ) )
+        instance = BusIO( int( sys.argv[2] ) )
 
         instance.Tx( int( sys.argv[1] ) )
         print( "Sent data" )
